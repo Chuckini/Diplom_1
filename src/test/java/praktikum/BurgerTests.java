@@ -49,7 +49,7 @@ public class BurgerTests {
     }
 
     @Test
-    public void shouldAddIngredient_increasesIngredientsSize() {
+    public void shouldAddIngredientIncreasesIngredientsSize() {
         Burger emptyBurger = new Burger();
         Ingredient ingredient = Mockito.mock(Ingredient.class);
 
@@ -59,7 +59,7 @@ public class BurgerTests {
     }
 
     @Test
-    public void shouldAddIngredient_addsIngredientToList() {
+    public void shouldAddIngredientAddsIngredientToList() {
         Burger emptyBurger = new Burger();
         Ingredient ingredient = Mockito.mock(Ingredient.class);
 
@@ -69,7 +69,7 @@ public class BurgerTests {
     }
 
     @Test
-    public void shouldRemoveIngredientByIndex_decreasesIngredientsSize() {
+    public void shouldRemoveIngredientByIndexDecreasesIngredientsSize() {
         Burger emptyBurger = new Burger();
         Ingredient firstIngredient = Mockito.mock(Ingredient.class);
         Ingredient secondIngredient = Mockito.mock(Ingredient.class);
@@ -83,7 +83,7 @@ public class BurgerTests {
     }
 
     @Test
-    public void shouldRemoveIngredientByIndex_shiftsRemainingIngredient() {
+    public void shouldRemoveIngredientByIndexShiftsRemainingIngredient() {
         Burger emptyBurger = new Burger();
         Ingredient firstIngredient = Mockito.mock(Ingredient.class);
         Ingredient secondIngredient = Mockito.mock(Ingredient.class);
@@ -97,7 +97,7 @@ public class BurgerTests {
     }
 
     @Test
-    public void shouldMoveIngredientWithMocks_changesOrder() {
+    public void shouldMoveIngredientWithMocksChangesOrder() {
         Burger emptyBurger = new Burger();
 
         Ingredient firstIngredient = Mockito.mock(Ingredient.class);
@@ -117,29 +117,18 @@ public class BurgerTests {
     }
 
     @Test
-    public void shouldContainBunHeaderAndFooterInReceipt() {
-        String receipt = burger.getReceipt();
-        assertTrue(receipt.contains("(==== white bun ====)"));
+    public void shouldReturnCorrectReceipt() {
+        String expectedReceipt =
+                "(==== white bun ====)\n" +
+                        "= sauce hot sauce =\n" +
+                        "= filling cutlet =\n" +
+                        "(==== white bun ====)\n" +
+                        "\n" +
+                        "Price: 800.000000\n";
+
+        assertEquals(expectedReceipt, burger.getReceipt());
     }
 
-    @Test
-    public void shouldContainSauceLineInReceipt() {
-        String receipt = burger.getReceipt();
-        assertTrue(receipt.contains("= sauce hot sauce ="));
-    }
-
-    @Test
-    public void shouldContainFillingLineInReceipt() {
-        String receipt = burger.getReceipt();
-        assertTrue(receipt.contains("= filling cutlet ="));
-    }
-
-    @Test
-    public void shouldContainCorrectPriceLineInReceipt() {
-        String receipt = burger.getReceipt();
-        float expected = 200f * 2 + 100f + 300f;
-        assertTrue(receipt.contains(String.format("Price: %f", expected)));
-    }
 
     @Test
     public void shouldCallBunGetNameWhenBuildingReceipt() {
